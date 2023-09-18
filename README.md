@@ -48,7 +48,10 @@ Please explain your choices and reasoning for the set of functions you implement
 - Filter songs
   - I used the .filter() function built into JS.
 - Album art
+
   - I used the `<Image/>` component from Next.js and used a picture from Unsplash.
+
+  \*\*note: I also added some comments in the code for functions, which I did not add here.
 
 ### Engineering Optimizations
 
