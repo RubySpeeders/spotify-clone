@@ -8,7 +8,7 @@ interface Props {
 const Library = ({ songs }: Props) => {
   return (
     <>
-      <h1>Library</h1>
+      <h2>Library</h2>
       <ul>
         {songs.map((song) => {
           return (
