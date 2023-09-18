@@ -4,12 +4,17 @@ import { Playlist } from "../interfaces/playlist";
 import { v4 as uuidv4 } from "uuid";
 
 export const CreatePlaylist = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false); // Step 1: Modal visibility state
   const [playlistName, setPlaylistName] = useState<string>("");
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault(); // Prevent the default form submission
     // Create a new playlist object and add it to the playlists array
-    const newPlaylist: Playlist = { name: playlistName, id: uuidv4() };
+    const newPlaylist: Playlist = {
+      name: playlistName,
+      id: uuidv4(),
+      songs: [],
+    };
     console.log(newPlaylist);
     setPlaylists([...playlists, newPlaylist]);
 
