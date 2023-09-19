@@ -5,7 +5,7 @@ import { Song } from "../interfaces/song";
 import AddToPlaylistButton from "./addToPlaylistButton";
 import albumArt from "../../../public/dhruv-N9UuFddi7hs-unsplash.jpg";
 import FilterByArtist from "./filterBy";
-import { shuffle } from "lodash";
+import { shuffle, uniq } from "lodash";
 
 interface Props {
   songs: Song[];
@@ -30,9 +30,13 @@ const Library = ({ songs }: Props) => {
     );
     setSongsToDisplay(filteredbyArtist);
   };
+
   return (
     <>
-      <FilterByArtist handleChange={handleDropdownChange} />
+      <FilterByArtist
+        artists={uniq(songs.map((song) => song.artist))}
+        handleChange={handleDropdownChange}
+      />
       <button onClick={shuffleSongs}>Shuffle Songs</button>
       <ul>
         <li>album art| artist | title | album</li>

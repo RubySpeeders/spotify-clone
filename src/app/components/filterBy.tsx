@@ -5,10 +5,10 @@ import { uniq } from "lodash";
 
 interface Props {
   handleChange: (e: ChangeEvent<HTMLSelectElement>) => void;
+  artists: string[];
 }
 
-const FilterByArtist = ({ handleChange }: Props) => {
-  const artists = ["Donna Summer", "Emily King", "Spice Girls"];
+const FilterByArtist = ({ artists, handleChange }: Props) => {
   const [selectedOption, setSelectedOption] = useState("");
   return (
     <form>
