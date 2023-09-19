@@ -1,8 +1,6 @@
 import React from "react";
-import SortBy from "../components/sortBy";
 import Library from "../components/library";
 import { Song } from "../interfaces/song";
-import FilterByArtist from "./filterBy";
 
 const MediaPlayer = async () => {
   //The instructions stated to use useEffect. Normally, I would use axios and and use useEffect/useState to fetch data, but the new Next.js allows SSR, which means that I don't have to do another call to the API for data after loading page.
@@ -19,7 +17,6 @@ const MediaPlayer = async () => {
   return (
     //with more time, I would have done createContext so that all these components have access to songs without having to send in props
     <>
-      <SortBy songs={songs} />
       <Library songs={songs} />
     </>
   );

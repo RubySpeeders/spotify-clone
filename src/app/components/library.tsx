@@ -6,6 +6,7 @@ import AddToPlaylistButton from "./addToPlaylistButton";
 import albumArt from "../../../public/dhruv-N9UuFddi7hs-unsplash.jpg";
 import FilterByArtist from "./filterBy";
 import { shuffle, uniq } from "lodash";
+import SortBy from "./sortBy";
 
 interface Props {
   songs: Song[];
@@ -16,9 +17,32 @@ const Library = ({ songs }: Props) => {
   const [selectedOption, setSelectedOption] = useState("");
   //shuffleSongs only works when all Songs are shown
   const shuffleSongs = () => {
-    setSongsToDisplay(shuffle(songs));
+    setSongsToDisplay(shuffle(songsToDisplay));
   };
-  const handleDropdownChange = (e: ChangeEvent<HTMLSelectElement>): void => {
+
+  const handleDropdownChangeSort = (
+    e: ChangeEvent<HTMLSelectElement>
+  ): void => {
+    setSelectedOption(e.target.value);
+    if (e.target.value === "title") {
+      setSongsToDisplay(
+        songs.sort((a, b) =>
+          a.title.toLowerCase().localeCompare(b.title.toLowerCase())
+        )
+      );
+    } else if (e.target.value === "artist") {
+      setSongsToDisplay(
+        songs.sort((a, b) =>
+          a.artist.toLowerCase().localeCompare(b.artist.toLowerCase())
+        )
+      );
+    }
+    // handleSort(songs, e.target.value as keyof Song);
+  };
+
+  const handleDropdownChangeFilter = (
+    e: ChangeEvent<HTMLSelectElement>
+  ): void => {
     //this is not displaying all songs. It is displaying no songs; the console.log does get the songs, and I'm not sure what the issue is currently.
     if (e.target.value === "All Artists") {
       console.log({ songs });
@@ -33,9 +57,10 @@ const Library = ({ songs }: Props) => {
 
   return (
     <>
+      <SortBy handleChange={handleDropdownChangeSort} />
       <FilterByArtist
         artists={uniq(songs.map((song) => song.artist))}
-        handleChange={handleDropdownChange}
+        handleChange={handleDropdownChangeFilter}
       />
       <button onClick={shuffleSongs}>Shuffle Songs</button>
       <ul>

@@ -4,25 +4,16 @@ import { Song } from "../interfaces/song";
 import { handleSort } from "../utils/handleSort";
 
 interface Props {
-  songs: Song[];
+  handleChange: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const SortBy = ({ songs }: Props) => {
+const SortBy = ({ handleChange }: Props) => {
   const options = ["Artist", "Title", "Album", "Song length"];
   const [selectedOption, setSelectedOption] = useState("");
-  const handleDropdownChange = (e: ChangeEvent<HTMLSelectElement>): void => {
-    setSelectedOption(e.target.value);
-    handleSort(songs, e.target.value as keyof Song);
-    console.log(songs);
-  };
   return (
     <form>
       <label htmlFor="dropdown">Sort by:</label>
-      <select
-        id="dropdown"
-        value={selectedOption}
-        onChange={handleDropdownChange}
-      >
+      <select id="dropdown" value={selectedOption} onChange={handleChange}>
         <option value="">Select an option</option>
         {options.map((option) => (
           <option key={option} value={option}>
