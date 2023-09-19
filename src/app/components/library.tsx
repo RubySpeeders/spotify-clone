@@ -24,18 +24,27 @@ const Library = ({ songs }: Props) => {
     e: ChangeEvent<HTMLSelectElement>
   ): void => {
     setSelectedOption(e.target.value);
-    if (e.target.value === "title") {
-      setSongsToDisplay(
-        songs.sort((a, b) =>
-          a.title.toLowerCase().localeCompare(b.title.toLowerCase())
-        )
+    if (e.target.value === "Title") {
+      console.log("title");
+      const sorted = songs.sort((a, b) =>
+        a.title.toLowerCase().localeCompare(b.title.toLowerCase())
       );
-    } else if (e.target.value === "artist") {
-      setSongsToDisplay(
-        songs.sort((a, b) =>
-          a.artist.toLowerCase().localeCompare(b.artist.toLowerCase())
-        )
+      setSongsToDisplay(sorted);
+    } else if (e.target.value === "Artist") {
+      const sorted = songs.sort((a, b) =>
+        a.artist.toLowerCase().localeCompare(b.artist.toLowerCase())
       );
+      setSongsToDisplay(sorted);
+    } else if (e.target.value === "Album") {
+      const sorted = songs.sort((a, b) =>
+        a.album.toLowerCase().localeCompare(b.album.toLowerCase())
+      );
+      setSongsToDisplay(sorted);
+    } else if (e.target.value === "Song length") {
+      const sorted = songs.sort((a, b) =>
+        a.song_length.toLowerCase().localeCompare(b.song_length.toLowerCase())
+      );
+      setSongsToDisplay(sorted);
     }
     // handleSort(songs, e.target.value as keyof Song);
   };
